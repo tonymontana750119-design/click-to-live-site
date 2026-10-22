@@ -5,7 +5,7 @@ import { StoreLayout } from "@/components/store/Layout";
 import { ProductGrid } from "@/components/store/ProductCard";
 
 export const Route = createFileRoute("/buscar")({
-  validateSearch: (s: Record<string, unknown>) => ({ q: typeof s.q === "string" ? s.q : "" }),
+  validateSearch: (s: Record<string, unknown>) => ({ q: typeof s["q"] === "string" ? s["q"] : "" }),
   head: () => ({
     meta: [
       { title: "Buscar — tecnomax" },

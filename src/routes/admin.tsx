@@ -71,7 +71,7 @@ function Login() {
       ? await supabase.auth.signInWithPassword({ email, password })
       : await supabase.auth.signUp({ email, password, options: { emailRedirectTo: window.location.origin + "/admin" } });
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     if (mode === "up") toast.success("Revisa tu correo para confirmar la cuenta.");
   }
   return (
@@ -131,7 +131,8 @@ const PRODUCT_FIELDS: Field[] = [
   { key: "sort", label: "Orden", type: "number" },
 ];
 
-type Row = Record<string, any>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Row = any;
 
 function FieldInput({ f, value, onChange }: { f: Field; value: any; onChange: (v: any) => void }) {
   const [up, setUp] = useState(false);
@@ -180,7 +181,7 @@ function SettingsEditor() {
       <button className={btn} onClick={async () => {
         const { id, ...rest } = row;
         const { error } = await supabase.from("settings").update(rest).eq("id", 1);
-        if (error) return toast.error(error.message);
+        if (error) { toast.error(error.message); return; }
         toast.success("Guardado"); qc.invalidateQueries({ queryKey: ["settings"] });
       }}>Guardar</button>
     </div>
@@ -196,7 +197,7 @@ function ListEditor({ table, query, fields, blank, label }: { table: "banners" |
     <div className="space-y-3">
       <button className={btn} onClick={async () => {
         const { data: r, error } = await supabase.from(table).insert(blank as any).select().single();
-        if (error) return toast.error(error.message);
+        if (error) { toast.error(error.message); return; }
         await refresh(); setOpen(r.id);
       }}><Plus className="h-4 w-4" /> Agregar</button>
       {data?.map((r) => (
@@ -221,13 +222,13 @@ function RowForm({ row: initial, fields, table, onDone }: { row: Row; fields: Fi
         <button className={btn} onClick={async () => {
           const { id, created_at, ...rest } = row;
           const { error } = await supabase.from(table).update(rest as any).eq("id", id);
-          if (error) return toast.error(error.message);
+          if (error) { toast.error(error.message); return; }
           toast.success("Guardado"); onDone();
         }}>Guardar</button>
         <button className="inline-flex items-center gap-1 rounded-lg px-4 py-2 text-sm font-semibold text-destructive hover:bg-muted" onClick={async () => {
           if (!confirm("¿Eliminar?")) return;
           const { error } = await supabase.from(table).delete().eq("id", row.id);
-          if (error) return toast.error(error.message);
+          if (error) { toast.error(error.message); return; }
           onDone();
         }}><Trash2 className="h-4 w-4" /> Eliminar</button>
       </div>
