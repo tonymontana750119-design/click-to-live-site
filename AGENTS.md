@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Store content (settings, banners, categories, products) lives in Lovable Cloud tables and is edited via /admin; first signed-up user becomes admin via trigger — keeps the site editable without code.
+- Uploaded images go to the private `images` bucket and are stored as long-lived signed URLs, because public buckets are blocked in this workspace.

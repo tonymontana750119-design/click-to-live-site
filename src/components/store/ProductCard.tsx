@@ -9,8 +9,8 @@ export function ProductCard({ p }: { p: Product }) {
   const d = discountPercent(Number(p.price), p.old_price ? Number(p.old_price) : null);
   return (
     <div className="bg-card rounded-xl shadow-card overflow-hidden flex flex-col transition hover:shadow-lift hover:-translate-y-0.5">
-      <Link to="/producto/$slug" params={{ slug: p.slug }} className="relative block aspect-square bg-muted">
-        {p.image_url && <img src={p.image_url} alt={p.name} loading="lazy" className="h-full w-full object-cover" />}
+      <Link to="/producto/$slug" params={{ slug: p.slug }} className="relative block aspect-square bg-muted overflow-hidden">
+        {p.image_url && <img src={p.image_url} alt={p.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />}
         {d > 0 && <span className="absolute top-2 left-2 bg-sale text-sale-foreground text-xs font-bold rounded px-2 py-1">-{d}%</span>}
       </Link>
       <div className="p-3 flex flex-col gap-1 flex-1">
