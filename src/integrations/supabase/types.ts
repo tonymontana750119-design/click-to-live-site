@@ -25,6 +25,7 @@ export type Database = {
           sort: number
           subtitle: string
           title: string
+          video_url: string
         }
         Insert: {
           badge?: string
@@ -36,6 +37,7 @@ export type Database = {
           sort?: number
           subtitle?: string
           title?: string
+          video_url?: string
         }
         Update: {
           badge?: string
@@ -47,6 +49,7 @@ export type Database = {
           sort?: number
           subtitle?: string
           title?: string
+          video_url?: string
         }
         Relationships: []
       }
@@ -93,6 +96,7 @@ export type Database = {
           reviews: number
           slug: string
           sort: number
+          subcategory: string
         }
         Insert: {
           brand?: string
@@ -112,6 +116,7 @@ export type Database = {
           reviews?: number
           slug: string
           sort?: number
+          subcategory?: string
         }
         Update: {
           brand?: string
@@ -131,6 +136,7 @@ export type Database = {
           reviews?: number
           slug?: string
           sort?: number
+          subcategory?: string
         }
         Relationships: []
       }
@@ -139,6 +145,9 @@ export type Database = {
           city: string
           footer_text: string
           id: number
+          logo_height: number
+          logo_position: string
+          logo_url: string
           promo_label: string
           store_name: string
           top_bar_text: string
@@ -148,6 +157,9 @@ export type Database = {
           city?: string
           footer_text?: string
           id?: number
+          logo_height?: number
+          logo_position?: string
+          logo_url?: string
           promo_label?: string
           store_name?: string
           top_bar_text?: string
@@ -157,6 +169,9 @@ export type Database = {
           city?: string
           footer_text?: string
           id?: number
+          logo_height?: number
+          logo_position?: string
+          logo_url?: string
           promo_label?: string
           store_name?: string
           top_bar_text?: string

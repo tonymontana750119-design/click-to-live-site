@@ -1,0 +1,4 @@
+ALTER TABLE public.settings ADD COLUMN IF NOT EXISTS logo_url text NOT NULL DEFAULT '', ADD COLUMN IF NOT EXISTS logo_position text NOT NULL DEFAULT 'left', ADD COLUMN IF NOT EXISTS logo_height integer NOT NULL DEFAULT 48;
+ALTER TABLE public.banners ADD COLUMN IF NOT EXISTS video_url text NOT NULL DEFAULT '';
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS subcategory text NOT NULL DEFAULT '';
+ALTER TABLE public.products ALTER COLUMN price SET DEFAULT 0;
