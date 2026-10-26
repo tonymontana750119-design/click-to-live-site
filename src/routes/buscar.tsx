@@ -8,10 +8,10 @@ export const Route = createFileRoute("/buscar")({
   validateSearch: (s: Record<string, unknown>) => ({ q: typeof s["q"] === "string" ? s["q"] : "" }),
   head: () => ({
     meta: [
-      { title: "Buscar — tecnomax" },
-      { name: "description", content: "Busca productos de tecnología en tecnomax." },
-      { property: "og:title", content: "Buscar — tecnomax" },
-      { property: "og:description", content: "Busca productos de tecnología en tecnomax." },
+      { title: "Buscar — TECNOVA STORE" },
+      { name: "description", content: "Busca productos de tecnología en TECNOVA STORE." },
+      { property: "og:title", content: "Buscar — TECNOVA STORE" },
+      { property: "og:description", content: "Busca productos de tecnología en TECNOVA STORE." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],

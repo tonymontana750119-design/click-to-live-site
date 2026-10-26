@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import {
-  Zap, Search, MapPin, User, ShoppingCart, Menu, Flame,
+  Zap, Search, MapPin, User, Menu, Flame,
   Smartphone, Laptop, Tv, Headphones, Gamepad2, Watch, Camera, Tag,
 } from "lucide-react";
 import { useState, type ReactNode } from "react";
