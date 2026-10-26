@@ -13,10 +13,10 @@ const FALLBACK = [hero1, hero2];
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "tecnomax — Tecnología con los mejores precios" },
-      { name: "description", content: "Celulares, computadores, televisores y más con descuentos y envío rápido." },
-      { property: "og:title", content: "tecnomax — Tecnología con los mejores precios" },
-      { property: "og:description", content: "Celulares, computadores, televisores y más con descuentos y envío rápido." },
+      { title: "TECNOVA STORE — Tecnología para ti" },
+      { name: "description", content: "Celulares, portátiles, televisores, impresoras y más. Consulta por WhatsApp." },
+      { property: "og:title", content: "TECNOVA STORE — Tecnología para ti" },
+      { property: "og:description", content: "Celulares, portátiles, televisores, impresoras y más. Consulta por WhatsApp." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -45,7 +45,9 @@ function Home() {
           <section className="relative rounded-2xl overflow-hidden aspect-[16/9] sm:aspect-[5/2] bg-primary-deep">
             {banners.map((b, idx) => (
               <div key={b.id} className={`absolute inset-0 transition-opacity duration-700 ${idx === i ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-                <img src={b.image_url || FALLBACK[idx % 2]} alt={b.title} className="absolute inset-0 h-full w-full object-cover" />
+                {b.video_url ? <video src={b.video_url} autoPlay muted loop playsInline className="absolute inset-0 h-full w-full object-cover" />
+                  : <img src={b.image_url || FALLBACK[idx % 2]} alt={b.title} className="absolute inset-0 h-full w-full object-cover" />}
+                <div className="absolute inset-0 bg-gradient-to-r from-primary-deep/80 to-transparent" />
                 <div className="relative h-full flex flex-col justify-center gap-3 px-8 sm:px-12 max-w-xl text-primary-foreground">
                   {b.badge && <span className="self-start bg-accent text-accent-foreground text-xs font-bold uppercase rounded-full px-3 py-1">{b.badge}</span>}
                   <h1 className="text-3xl sm:text-5xl font-extrabold">{b.title}</h1>
