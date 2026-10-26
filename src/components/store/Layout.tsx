@@ -80,16 +80,20 @@ export function StoreLayout({ children }: { children: ReactNode }) {
       </header>
       <main className="flex-1">{children}</main>
       <footer className="bg-primary-deep text-primary-foreground mt-16">
-        <div className="mx-auto max-w-7xl px-4 py-10 grid gap-6 sm:grid-cols-3 text-sm">
-          <div className="text-xl font-extrabold">{s.store_name}</div>
-          <div className="flex flex-col gap-1">
-            {cats.map((c) => (
-              <Link key={c.id} to="/categoria/$slug" params={{ slug: c.slug }} className="opacity-80 hover:opacity-100">{c.name}</Link>
-            ))}
+        <div className="mx-auto max-w-7xl px-4 py-8 grid gap-6 md:grid-cols-[1fr_3fr] text-sm">
+          <div className="space-y-2">
+            <div className="text-xl font-extrabold">{s.store_name}</div>
+            {s.whatsapp && (
+              <a href={`https://wa.me/${s.whatsapp.replace(/\D/g, "")}`} target="_blank" rel="noreferrer" className="block opacity-90 hover:text-accent">
+                WhatsApp: {s.whatsapp}
+              </a>
+            )}
+            <p className="opacity-80">{s.footer_text}</p>
           </div>
-          <div className="opacity-80">
-            {s.whatsapp && <p>WhatsApp: {s.whatsapp}</p>}
-            <p className="mt-2">{s.footer_text}</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-1">
+            {cats.map((c) => (
+              <Link key={c.id} to="/categoria/$slug" params={{ slug: c.slug }} className="opacity-80 hover:opacity-100 truncate">{c.name}</Link>
+            ))}
           </div>
         </div>
       </footer>
