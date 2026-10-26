@@ -7,10 +7,10 @@ import { ProductGrid } from "@/components/store/ProductCard";
 export const Route = createFileRoute("/categoria/$slug")({
   head: ({ params }) => ({
     meta: [
-      { title: `${params.slug} — tecnomax` },
-      { name: "description", content: `Encuentra lo mejor en ${params.slug} con descuentos.` },
-      { property: "og:title", content: `${params.slug} — tecnomax` },
-      { property: "og:description", content: `Encuentra lo mejor en ${params.slug} con descuentos.` },
+      { title: `${params.slug} — TECNOVA STORE` },
+      { name: "description", content: `Catálogo de ${params.slug} en TECNOVA STORE.` },
+      { property: "og:title", content: `${params.slug} — TECNOVA STORE` },
+      { property: "og:description", content: `Catálogo de ${params.slug} en TECNOVA STORE.` },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -26,11 +26,18 @@ function CategoryPage() {
   const { data: products } = useSuspenseQuery(productsQuery);
   const cat = cats.find((c) => c.slug === slug);
   const items = products.filter((p) => p.category_slug === slug);
+  const groups = new Map<string, typeof items>();
+  items.forEach((p) => { const k = p.subcategory || "Otros"; groups.set(k, [...(groups.get(k) ?? []), p]); });
   return (
     <StoreLayout>
-      <div className="mx-auto max-w-7xl px-4 py-8">
-        <h1 className="text-3xl font-extrabold mb-6">{cat?.name ?? slug}</h1>
-        {items.length ? <ProductGrid items={items} /> : <p className="text-muted-foreground">Aún no hay productos en esta categoría.</p>}
+      <div className="mx-auto max-w-7xl px-4 py-8 space-y-8">
+        <h1 className="text-3xl font-extrabold">{cat?.name ?? slug}</h1>
+        {items.length ? [...groups].map(([g, list]) => (
+          <section key={g}>
+            <h2 className="text-xl font-bold mb-3">{g}</h2>
+            <ProductGrid items={list} />
+          </section>
+        )) : <p className="text-muted-foreground">Aún no hay productos en esta categoría.</p>}
       </div>
     </StoreLayout>
   );

@@ -1,11 +1,12 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import {
-  Zap, Search, MapPin, User, ShoppingCart, Menu, Flame,
+  Zap, Search, MapPin, User, Menu, Flame,
   Smartphone, Laptop, Tv, Headphones, Gamepad2, Watch, Camera, Tag,
 } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { categoriesQuery, settingsQuery } from "@/lib/store";
+import { phones, prettyPhone, waLink } from "@/lib/whatsapp";
 import { useCart } from "@/lib/cart";
 
 const ICONS: Record<string, typeof Smartphone> = {
@@ -33,8 +34,12 @@ export function StoreLayout({ children }: { children: ReactNode }) {
       </div>
       <header className="bg-primary text-primary-foreground sticky top-0 z-30">
         <div className="mx-auto max-w-7xl px-4 py-3 flex items-center gap-4">
-          <Link to="/" className="text-2xl font-extrabold tracking-tight shrink-0">
-            {s.store_name.slice(0, half)}<span className="text-accent">{s.store_name.slice(half)}</span>
+          <Link to="/" className={`shrink-0 ${s.logo_position === "center" ? "md:mx-auto md:order-none" : s.logo_position === "right" ? "order-last" : ""}`}>
+            {s.logo_url ? (
+              <span className="inline-block bg-card rounded-lg px-2 py-1"><img src={s.logo_url} alt={s.store_name} style={{ height: s.logo_height || 48 }} className="w-auto" /></span>
+            ) : (
+              <span className="text-2xl font-extrabold tracking-tight">{s.store_name.slice(0, half)}<span className="text-accent">{s.store_name.slice(half)}</span></span>
+            )}
           </Link>
           <form
             className="flex-1 flex rounded-lg overflow-hidden bg-card"
@@ -57,12 +62,6 @@ export function StoreLayout({ children }: { children: ReactNode }) {
           <Link to="/admin" className="hidden sm:flex items-center gap-1 text-sm">
             <User className="h-5 w-5" /> Mi Cuenta
           </Link>
-          <div className="relative">
-            <ShoppingCart className="h-6 w-6" />
-            {count > 0 && (
-              <span className="absolute -top-2 -right-2 bg-accent text-accent-foreground text-[10px] font-bold rounded-full h-5 w-5 grid place-items-center">{count}</span>
-            )}
-          </div>
         </div>
         <nav className="border-t border-primary-foreground/15">
           <div className="mx-auto max-w-7xl px-4 py-2 flex items-center gap-6 text-sm font-medium overflow-x-auto">
@@ -83,11 +82,11 @@ export function StoreLayout({ children }: { children: ReactNode }) {
         <div className="mx-auto max-w-7xl px-4 py-8 grid gap-6 md:grid-cols-[1fr_3fr] text-sm">
           <div className="space-y-2">
             <div className="text-xl font-extrabold">{s.store_name}</div>
-            {s.whatsapp && (
-              <a href={`https://wa.me/${s.whatsapp.replace(/\D/g, "")}`} target="_blank" rel="noreferrer" className="block opacity-90 hover:text-accent">
-                WhatsApp: {s.whatsapp}
+            {phones(s.whatsapp).map((n) => (
+              <a key={n} href={waLink(n)} target="_blank" rel="noreferrer" className="block opacity-90 hover:text-accent">
+                WhatsApp {prettyPhone(n)}
               </a>
-            )}
+            ))}
             <p className="opacity-80">{s.footer_text}</p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-1">

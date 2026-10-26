@@ -11,9 +11,9 @@ import { ICON_NAMES } from "@/components/store/Layout";
 export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
-      { title: "Panel de edición — tecnomax" },
+      { title: "Panel de edición — TECNOVA STORE" },
       { name: "description", content: "Edita textos, banners, categorías y productos de la tienda." },
-      { property: "og:title", content: "Panel de edición — tecnomax" },
+      { property: "og:title", content: "Panel de edición — TECNOVA STORE" },
       { property: "og:description", content: "Edita textos, banners, categorías y productos de la tienda." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -114,6 +114,7 @@ const BANNER_FIELDS: Field[] = [
   { key: "badge", label: "Etiqueta", type: "text" }, { key: "title", label: "Título", type: "text" },
   { key: "subtitle", label: "Subtítulo", type: "text" }, { key: "button_text", label: "Texto del botón", type: "text" },
   { key: "link", label: "Enlace del botón", type: "text" }, { key: "image_url", label: "Imagen", type: "image" },
+  { key: "video_url", label: "Video (URL, opcional)", type: "text" },
   { key: "sort", label: "Orden", type: "number" },
 ];
 const CAT_FIELDS: Field[] = [
@@ -123,7 +124,7 @@ const CAT_FIELDS: Field[] = [
 const PRODUCT_FIELDS: Field[] = [
   { key: "name", label: "Nombre", type: "text" }, { key: "brand", label: "Marca", type: "text" },
   { key: "slug", label: "Dirección (sin espacios)", type: "text" }, { key: "category_slug", label: "Categoría (dirección)", type: "text" },
-  { key: "price", label: "Precio", type: "number" }, { key: "old_price", label: "Precio antes (opcional)", type: "number" },
+  { key: "subcategory", label: "Subcategoría", type: "text" },
   { key: "image_url", label: "Imagen", type: "image" }, { key: "description", label: "Descripción", type: "textarea" },
   { key: "rating", label: "Calificación (0-5)", type: "number" }, { key: "reviews", label: "Nº opiniones", type: "number" },
   { key: "fast_shipping", label: "Envío rápido", type: "bool" }, { key: "is_flash", label: "En Ofertas flash", type: "bool" },
@@ -173,7 +174,10 @@ function SettingsEditor() {
   const fields: Field[] = [
     { key: "store_name", label: "Nombre de la tienda", type: "text" }, { key: "top_bar_text", label: "Texto barra superior", type: "text" },
     { key: "promo_label", label: "Etiqueta promoción", type: "text" }, { key: "city", label: "Ciudad de envío", type: "text" },
-    { key: "whatsapp", label: "WhatsApp", type: "text" }, { key: "footer_text", label: "Texto del pie de página", type: "text" },
+    { key: "whatsapp", label: "WhatsApp (separa varios con -)", type: "text" },
+    { key: "logo_url", label: "Logo", type: "image" },
+    { key: "logo_position", label: "Posición del logo (left / center / right)", type: "text" },
+    { key: "logo_height", label: "Tamaño del logo (px)", type: "number" }, { key: "footer_text", label: "Texto del pie de página", type: "text" },
   ];
   return (
     <div className="bg-card rounded-xl shadow-card p-5 space-y-4">
