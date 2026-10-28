@@ -15,6 +15,13 @@
       "when": 1792769391511,
       "tag": "0001_logo_video_subcategory",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1793200275021,
+      "tag": "0002_category_photo",
+      "breakpoints": true
     }
   ]
 }

@@ -57,6 +57,7 @@ export type Database = {
         Row: {
           icon: string
           id: string
+          image_url: string
           name: string
           slug: string
           sort: number
@@ -64,6 +65,7 @@ export type Database = {
         Insert: {
           icon?: string
           id?: string
+          image_url?: string
           name: string
           slug: string
           sort?: number
@@ -71,6 +73,7 @@ export type Database = {
         Update: {
           icon?: string
           id?: string
+          image_url?: string
           name?: string
           slug?: string
           sort?: number
