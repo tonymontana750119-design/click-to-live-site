@@ -72,9 +72,23 @@ function Home() {
 
         <section className="grid grid-cols-3 sm:grid-cols-6 gap-3">
           {cats.map((c) => (
-            <Link key={c.id} to="/categoria/$slug" params={{ slug: c.slug }} className="bg-card rounded-xl shadow-card p-4 flex flex-col items-center gap-2 hover:shadow-lift transition">
-              <span className="h-12 w-12 rounded-full bg-secondary text-secondary-foreground grid place-items-center"><CategoryIcon name={c.icon} className="h-6 w-6" /></span>
-              <span className="text-sm font-semibold text-center">{c.name}</span>
+            <Link
+              key={c.id}
+              to="/categoria/$slug"
+              params={{ slug: c.slug }}
+              className={`bg-card rounded-xl shadow-card hover:shadow-lift transition overflow-hidden flex flex-col ${c.image_url ? "" : "p-4 items-center gap-2"}`}
+            >
+              {c.image_url ? (
+                <>
+                  <img src={c.image_url} alt={c.name} className="w-full aspect-square object-cover" />
+                  <span className="text-sm font-semibold text-center px-2 py-2.5">{c.name}</span>
+                </>
+              ) : (
+                <>
+                  <span className="h-12 w-12 rounded-full bg-secondary text-secondary-foreground grid place-items-center"><CategoryIcon name={c.icon} className="h-6 w-6" /></span>
+                  <span className="text-sm font-semibold text-center">{c.name}</span>
+                </>
+              )}
             </Link>
           ))}
         </section>

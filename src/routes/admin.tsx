@@ -119,7 +119,8 @@ const BANNER_FIELDS: Field[] = [
 ];
 const CAT_FIELDS: Field[] = [
   { key: "name", label: "Nombre", type: "text" }, { key: "slug", label: "Dirección (sin espacios)", type: "text" },
-  { key: "icon", label: "Ícono", type: "icon" }, { key: "sort", label: "Orden", type: "number" },
+  { key: "image_url", label: "Foto de la categoría (portada)", type: "image" },
+  { key: "icon", label: "Ícono (se muestra si no hay foto)", type: "icon" }, { key: "sort", label: "Orden", type: "number" },
 ];
 const PRODUCT_FIELDS: Field[] = [
   { key: "name", label: "Nombre", type: "text" }, { key: "brand", label: "Marca", type: "text" },
