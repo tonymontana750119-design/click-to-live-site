@@ -22,6 +22,13 @@
       "when": 1793200275021,
       "tag": "0002_category_photo",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1793273294175,
+      "tag": "0003_manual_transfer_settings",
+      "breakpoints": true
     }
   ]
 }

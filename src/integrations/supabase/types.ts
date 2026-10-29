@@ -145,37 +145,52 @@ export type Database = {
       }
       settings: {
         Row: {
+          bancolombia_account: string
+          bancolombia_account_type: string
           city: string
           footer_text: string
           id: number
           logo_height: number
           logo_position: string
           logo_url: string
+          nequi_number: string
+          payment_holder: string
           promo_label: string
+          receipt_whatsapp: string
           store_name: string
           top_bar_text: string
           whatsapp: string
         }
         Insert: {
+          bancolombia_account?: string
+          bancolombia_account_type?: string
           city?: string
           footer_text?: string
           id?: number
           logo_height?: number
           logo_position?: string
           logo_url?: string
+          nequi_number?: string
+          payment_holder?: string
           promo_label?: string
+          receipt_whatsapp?: string
           store_name?: string
           top_bar_text?: string
           whatsapp?: string
         }
         Update: {
+          bancolombia_account?: string
+          bancolombia_account_type?: string
           city?: string
           footer_text?: string
           id?: number
           logo_height?: number
           logo_position?: string
           logo_url?: string
+          nequi_number?: string
+          payment_holder?: string
           promo_label?: string
+          receipt_whatsapp?: string
           store_name?: string
           top_bar_text?: string
           whatsapp?: string
