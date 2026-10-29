@@ -11,3 +11,4 @@
 
 - Store content (settings, banners, categories, products) lives in Lovable Cloud tables and is edited via /admin; first signed-up user becomes admin via trigger — keeps the site editable without code.
 - Uploaded images go to the private `images` bucket and are stored as long-lived signed URLs, because public buckets are blocked in this workspace.
+- Manual transfers use editable settings and a /pagos page linked from products and the footer; receipts open WhatsApp and never establish payment confirmation.

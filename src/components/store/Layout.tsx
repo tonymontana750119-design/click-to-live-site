@@ -88,6 +88,7 @@ export function StoreLayout({ children }: { children: ReactNode }) {
               </a>
             ))}
             <p className="opacity-80">{s.footer_text}</p>
+            <Link to="/pagos" search={{ producto: "" }} className="block underline hover:text-accent">Pagos: Nequi y Bancolombia</Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-1">
             {cats.map((c) => (

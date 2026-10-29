@@ -1,0 +1,2 @@
+ALTER TABLE public.settings ADD COLUMN nequi_number text NOT NULL DEFAULT '', ADD COLUMN bancolombia_account text NOT NULL DEFAULT '', ADD COLUMN bancolombia_account_type text NOT NULL DEFAULT 'Ahorros', ADD COLUMN payment_holder text NOT NULL DEFAULT '', ADD COLUMN receipt_whatsapp text NOT NULL DEFAULT '';
+UPDATE public.settings SET nequi_number = '3135366722', bancolombia_account = '525-82574626', bancolombia_account_type = 'Ahorros', receipt_whatsapp = '573135366722' WHERE id = 1;
