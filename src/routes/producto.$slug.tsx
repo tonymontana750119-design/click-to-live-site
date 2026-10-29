@@ -1,9 +1,10 @@
-import { createFileRoute, notFound } from "@tanstack/react-router";
+import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { MessageCircle } from "lucide-react";
 import { categoriesQuery, productsQuery, settingsQuery } from "@/lib/store";
 import { StoreLayout } from "@/components/store/Layout";
 import { phones, prettyPhone, waLink } from "@/lib/whatsapp";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/producto/$slug")({
   loader: async ({ context: { queryClient: q }, params }) => {
@@ -29,7 +30,8 @@ function ProductPage() {
   const { slug } = Route.useParams();
   const { data: products } = useSuspenseQuery(productsQuery);
   const { data: s } = useSuspenseQuery(settingsQuery);
-  const p = products.find((x) => x.slug === slug)!;
+  const p = products.find((x) => x.slug === slug);
+  if (!p) throw notFound();
   return (
     <StoreLayout>
       <div className="mx-auto max-w-6xl px-4 py-8 grid md:grid-cols-2 gap-8">
@@ -47,6 +49,7 @@ function ProductPage() {
               <MessageCircle className="h-5 w-5" /> WhatsApp {prettyPhone(n)}
             </a>
           ))}
+          <Button asChild variant="outline"><Link to="/pagos" search={{ producto: p.name }}>Pagar por Nequi o Bancolombia</Link></Button>
         </div>
       </div>
     </StoreLayout>
