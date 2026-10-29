@@ -9,7 +9,7 @@ import { StoreLayout } from "@/components/store/Layout";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/pagos")({
-  validateSearch: (s: Record<string, unknown>) => ({ producto: typeof s.producto === "string" ? s.producto : "" }),
+  validateSearch: (s: Record<string, unknown>) => ({ producto: typeof s["producto"] === "string" ? s["producto"] : "" }),
   head: () => ({ meta: [
     { title: "Transferencias Nequi y Bancolombia — TECNOVA STORE" },
     { name: "description", content: "Datos de transferencia de TECNOVA STORE y envío de comprobantes por WhatsApp." },
