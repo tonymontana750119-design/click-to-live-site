@@ -1,6 +1,8 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, ShoppingCart } from "lucide-react";
+import { toast } from "sonner";
+import { useCart } from "@/lib/cart";
 import { categoriesQuery, productsQuery, settingsQuery } from "@/lib/store";
 import { StoreLayout } from "@/components/store/Layout";
 import { phones, prettyPhone, waLink } from "@/lib/whatsapp";
@@ -30,6 +32,7 @@ function ProductPage() {
   const { slug } = Route.useParams();
   const { data: products } = useSuspenseQuery(productsQuery);
   const { data: s } = useSuspenseQuery(settingsQuery);
+  const { add } = useCart();
   const p = products.find((x) => x.slug === slug);
   if (!p) throw notFound();
   return (
@@ -42,7 +45,9 @@ function ProductPage() {
           <span className="text-sm uppercase font-semibold text-muted-foreground">{p.subcategory || p.brand}</span>
           <h1 className="text-3xl font-extrabold">{p.name}</h1>
           {p.description && <p className="text-muted-foreground whitespace-pre-line">{p.description}</p>}
-          <p className="mt-4 font-semibold">Consulta precio y disponibilidad:</p>
+          <Button size="lg" className="mt-4" onClick={() => { add(p.slug, p.name); toast.success("Agregado al carrito"); }}><ShoppingCart /> Agregar al carrito</Button>
+          <Button asChild variant="secondary"><Link to="/carrito">Ir al carrito y pagar</Link></Button>
+          <p className="mt-2 font-semibold">Consulta precio y disponibilidad:</p>
           {phones(s.whatsapp).map((n) => (
             <a key={n} href={waLink(n, `Hola, quiero información sobre: ${p.name}`)} target="_blank" rel="noreferrer"
               className="flex items-center justify-center gap-2 rounded-lg bg-success text-primary-foreground font-bold py-3 hover:brightness-110">

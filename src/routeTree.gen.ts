@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as BuscarRouteImport } from './routes/buscar'
+import { Route as CarritoRouteImport } from './routes/carrito'
+import { Route as CatalogoRouteImport } from './routes/catalogo'
 import { Route as PagosRouteImport } from './routes/pagos'
 import { Route as CategoriaSlugRouteImport } from './routes/categoria.$slug'
 import { Route as ProductoSlugRouteImport } from './routes/producto.$slug'
@@ -29,6 +31,16 @@ const AdminRoute = AdminRouteImport.update({
 const BuscarRoute = BuscarRouteImport.update({
   id: '/buscar',
   path: '/buscar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarritoRoute = CarritoRouteImport.update({
+  id: '/carrito',
+  path: '/carrito',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CatalogoRoute = CatalogoRouteImport.update({
+  id: '/catalogo',
+  path: '/catalogo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PagosRoute = PagosRouteImport.update({
@@ -51,6 +63,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/buscar': typeof BuscarRoute
+  '/carrito': typeof CarritoRoute
+  '/catalogo': typeof CatalogoRoute
   '/pagos': typeof PagosRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
   '/producto/$slug': typeof ProductoSlugRoute
@@ -59,6 +73,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/buscar': typeof BuscarRoute
+  '/carrito': typeof CarritoRoute
+  '/catalogo': typeof CatalogoRoute
   '/pagos': typeof PagosRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
   '/producto/$slug': typeof ProductoSlugRoute
@@ -68,6 +84,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/buscar': typeof BuscarRoute
+  '/carrito': typeof CarritoRoute
+  '/catalogo': typeof CatalogoRoute
   '/pagos': typeof PagosRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
   '/producto/$slug': typeof ProductoSlugRoute
@@ -78,6 +96,8 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/buscar'
+    | '/carrito'
+    | '/catalogo'
     | '/pagos'
     | '/categoria/$slug'
     | '/producto/$slug'
@@ -86,6 +106,8 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/buscar'
+    | '/carrito'
+    | '/catalogo'
     | '/pagos'
     | '/categoria/$slug'
     | '/producto/$slug'
@@ -94,6 +116,8 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/buscar'
+    | '/carrito'
+    | '/catalogo'
     | '/pagos'
     | '/categoria/$slug'
     | '/producto/$slug'
@@ -103,6 +127,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
   BuscarRoute: typeof BuscarRoute
+  CarritoRoute: typeof CarritoRoute
+  CatalogoRoute: typeof CatalogoRoute
   PagosRoute: typeof PagosRoute
   CategoriaSlugRoute: typeof CategoriaSlugRoute
   ProductoSlugRoute: typeof ProductoSlugRoute
@@ -129,6 +155,20 @@ declare module '@tanstack/react-router' {
       path: '/buscar'
       fullPath: '/buscar'
       preLoaderRoute: typeof BuscarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/carrito': {
+      id: '/carrito'
+      path: '/carrito'
+      fullPath: '/carrito'
+      preLoaderRoute: typeof CarritoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/catalogo': {
+      id: '/catalogo'
+      path: '/catalogo'
+      fullPath: '/catalogo'
+      preLoaderRoute: typeof CatalogoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pagos': {
@@ -159,6 +199,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
   BuscarRoute: BuscarRoute,
+  CarritoRoute: CarritoRoute,
+  CatalogoRoute: CatalogoRoute,
   PagosRoute: PagosRoute,
   CategoriaSlugRoute: CategoriaSlugRoute,
   ProductoSlugRoute: ProductoSlugRoute,
