@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import {
-  Zap, Search, MapPin, User, Menu, Flame,
+  Zap, Search, ShoppingCart, MapPin, User, Menu, Flame,
   Smartphone, Laptop, Tv, Headphones, Gamepad2, Watch, Camera, Tag,
 } from "lucide-react";
 import { useState, type ReactNode } from "react";
@@ -59,13 +59,17 @@ export function StoreLayout({ children }: { children: ReactNode }) {
             <MapPin className="h-5 w-5" />
             <div>Enviar a<br /><b>{s.city}</b></div>
           </div>
+          <Link to="/carrito" className="relative flex items-center gap-1 text-sm" aria-label="Carrito">
+            <ShoppingCart className="h-6 w-6" />
+            {count > 0 && <span className="absolute -top-2 -right-2 min-w-5 h-5 rounded-full bg-accent text-accent-foreground text-xs font-bold grid place-items-center px-1">{count}</span>}
+          </Link>
           <Link to="/admin" className="hidden sm:flex items-center gap-1 text-sm">
             <User className="h-5 w-5" /> Mi Cuenta
           </Link>
         </div>
         <nav className="border-t border-primary-foreground/15">
           <div className="mx-auto max-w-7xl px-4 py-2 flex items-center gap-6 text-sm font-medium overflow-x-auto">
-            <span className="flex items-center gap-1 shrink-0"><Menu className="h-4 w-4" /> Categorías</span>
+            <Link to="/catalogo" className="flex items-center gap-1 shrink-0 font-bold hover:text-accent"><Menu className="h-4 w-4" /> Catálogo</Link>
             {cats.map((c) => (
               <Link key={c.id} to="/categoria/$slug" params={{ slug: c.slug }} className="shrink-0 hover:text-accent">
                 {c.name}

@@ -53,7 +53,7 @@ function Home() {
                   <h1 className="text-3xl sm:text-5xl font-extrabold">{b.title}</h1>
                   <p className="sm:text-lg opacity-90">{b.subtitle}</p>
                   {b.button_text && (
-                    <a href={b.link} className="self-start bg-accent text-accent-foreground font-bold rounded-lg px-5 py-2.5 hover:brightness-110">{b.button_text}</a>
+                    <a href={b.link && b.link !== "#" ? b.link : "/catalogo"} className="self-start bg-accent text-accent-foreground font-bold rounded-lg px-5 py-2.5 hover:brightness-110">{b.button_text}</a>
                   )}
                 </div>
               </div>
