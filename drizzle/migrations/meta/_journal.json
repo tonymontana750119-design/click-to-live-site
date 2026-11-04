@@ -29,6 +29,13 @@
       "when": 1793273294175,
       "tag": "0003_manual_transfer_settings",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1793808557921,
+      "tag": "0004_product_spec_url",
+      "breakpoints": true
     }
   ]
 }
