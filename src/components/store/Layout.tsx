@@ -2,7 +2,7 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import {
   Zap, Search, ShoppingCart, MapPin, User, Menu, Flame,
-  Smartphone, Laptop, Tv, Headphones, Gamepad2, Watch, Camera, Tag,
+  Smartphone, Laptop, Tv, Headphones, Gamepad2, Watch, Camera, Tag, Wrench, Film, Speaker,
 } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { categoriesQuery, settingsQuery } from "@/lib/store";
@@ -12,6 +12,7 @@ import { useCart } from "@/lib/cart";
 const ICONS: Record<string, typeof Smartphone> = {
   smartphone: Smartphone, laptop: Laptop, tv: Tv, headphones: Headphones,
   gamepad: Gamepad2, watch: Watch, camera: Camera, tag: Tag,
+  wrench: Wrench, film: Film, speaker: Speaker,
 };
 export const ICON_NAMES = Object.keys(ICONS);
 export function CategoryIcon({ name, className }: { name: string; className?: string }) {
