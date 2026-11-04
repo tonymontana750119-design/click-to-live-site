@@ -99,6 +99,7 @@ export type Database = {
           reviews: number
           slug: string
           sort: number
+          spec_url: string | null
           subcategory: string
         }
         Insert: {
@@ -119,6 +120,7 @@ export type Database = {
           reviews?: number
           slug: string
           sort?: number
+          spec_url?: string | null
           subcategory?: string
         }
         Update: {
@@ -139,6 +141,7 @@ export type Database = {
           reviews?: number
           slug?: string
           sort?: number
+          spec_url?: string | null
           subcategory?: string
         }
         Relationships: []

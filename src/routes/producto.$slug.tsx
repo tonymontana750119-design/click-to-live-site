@@ -1,6 +1,7 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { MessageCircle, ShoppingCart } from "lucide-react";
+import { FileText, MessageCircle, ShoppingCart } from "lucide-react";
+import { specUrl } from "@/lib/specs";
 import { toast } from "sonner";
 import { useCart } from "@/lib/cart";
 import { categoriesQuery, productsQuery, settingsQuery } from "@/lib/store";
@@ -45,7 +46,8 @@ function ProductPage() {
           <span className="text-sm uppercase font-semibold text-muted-foreground">{p.subcategory || p.brand}</span>
           <h1 className="text-3xl font-extrabold">{p.name}</h1>
           {p.description && <p className="text-muted-foreground whitespace-pre-line">{p.description}</p>}
-          <Button size="lg" className="mt-4" onClick={() => { add(p.slug, p.name); toast.success("Agregado al carrito"); }}><ShoppingCart /> Agregar al carrito</Button>
+          {specUrl(p) && <Button asChild variant="outline" className="mt-4"><a href={specUrl(p)!} target="_blank" rel="noreferrer"><FileText /> Ver ficha técnica</a></Button>}
+          <Button size="lg" className="mt-2" onClick={() => { add(p.slug, p.name); toast.success("Agregado al carrito"); }}><ShoppingCart /> Agregar al carrito</Button>
           <Button asChild variant="secondary"><Link to="/carrito">Ir al carrito y pagar</Link></Button>
           <p className="mt-2 font-semibold">Consulta precio y disponibilidad:</p>
           {phones(s.whatsapp).map((n) => (

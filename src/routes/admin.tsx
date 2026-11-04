@@ -126,6 +126,7 @@ const PRODUCT_FIELDS: Field[] = [
   { key: "name", label: "Nombre", type: "text" }, { key: "brand", label: "Marca", type: "text" },
   { key: "slug", label: "Dirección (sin espacios)", type: "text" }, { key: "category_slug", label: "Categoría (dirección)", type: "text" },
   { key: "subcategory", label: "Subcategoría", type: "text" },
+  { key: "spec_url", label: "Enlace ficha técnica", type: "text" },
   { key: "image_url", label: "Imagen", type: "image" }, { key: "description", label: "Descripción", type: "textarea" },
   { key: "rating", label: "Calificación (0-5)", type: "number" }, { key: "reviews", label: "Nº opiniones", type: "number" },
   { key: "fast_shipping", label: "Envío rápido", type: "bool" }, { key: "is_flash", label: "En Ofertas flash", type: "bool" },

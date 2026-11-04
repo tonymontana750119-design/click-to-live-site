@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { MessageCircle, ShoppingCart } from "lucide-react";
+import { FileText, MessageCircle, ShoppingCart } from "lucide-react";
+import { specUrl } from "@/lib/specs";
 import { toast } from "sonner";
 import { useCart } from "@/lib/cart";
 import { settingsQuery, type Product } from "@/lib/store";
@@ -18,8 +19,13 @@ export function ProductCard({ p }: { p: Product }) {
       <div className="p-3 flex flex-col gap-1 flex-1">
         <span className="text-xs text-muted-foreground uppercase font-semibold">{p.subcategory || p.brand}</span>
         <Link to="/producto/$slug" params={{ slug: p.slug }} className="text-sm font-medium line-clamp-3 hover:text-primary">{p.name}</Link>
+        {specUrl(p) && (
+          <a href={specUrl(p)!} target="_blank" rel="noreferrer" className="mt-auto flex items-center justify-center gap-1.5 w-full rounded-lg border border-primary text-primary text-sm font-semibold py-2 hover:bg-secondary transition">
+            <FileText className="h-4 w-4" /> Ficha técnica
+          </a>
+        )}
         <button onClick={() => { add(p.slug, p.name); toast.success("Agregado al carrito"); }}
-          className="mt-auto flex items-center justify-center gap-1.5 w-full rounded-lg bg-primary text-primary-foreground text-sm font-semibold py-2 hover:bg-primary-deep transition">
+          className="mt-1 flex items-center justify-center gap-1.5 w-full rounded-lg bg-primary text-primary-foreground text-sm font-semibold py-2 hover:bg-primary-deep transition">
           <ShoppingCart className="h-4 w-4" /> Agregar
         </button>
         {num && (
