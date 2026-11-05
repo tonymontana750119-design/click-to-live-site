@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { FileText, MessageCircle, ShoppingCart } from "lucide-react";
+import { FileText, ImageIcon, MessageCircle, ShoppingCart } from "lucide-react";
+import { GUIDES } from "@/lib/guides";
 import { specUrl } from "@/lib/specs";
 import { toast } from "sonner";
 import { useCart } from "@/lib/cart";
@@ -14,7 +15,12 @@ export function ProductCard({ p }: { p: Product }) {
   return (
     <div className="bg-card rounded-xl shadow-card overflow-hidden flex flex-col transition hover:shadow-lift hover:-translate-y-0.5">
       <Link to="/producto/$slug" params={{ slug: p.slug }} className="relative block aspect-square bg-muted overflow-hidden">
-        {p.image_url && <img src={p.image_url} alt={p.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />}
+        {p.image_url ? <img src={p.image_url} alt={p.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+          : GUIDES[p.category_slug] && (
+            <span className="absolute inset-0 grid place-items-center text-muted-foreground">
+              <span className="flex flex-col items-center gap-1 text-xs"><ImageIcon className="h-10 w-10" />Espacio para foto</span>
+            </span>
+          )}
       </Link>
       <div className="p-3 flex flex-col gap-1 flex-1">
         <span className="text-xs text-muted-foreground uppercase font-semibold">{p.subcategory || p.brand}</span>
@@ -22,6 +28,11 @@ export function ProductCard({ p }: { p: Product }) {
         {specUrl(p) && (
           <a href={specUrl(p)!} target="_blank" rel="noreferrer" className="mt-auto flex items-center justify-center gap-1.5 w-full rounded-lg border border-primary text-primary text-sm font-semibold py-2 hover:bg-secondary transition">
             <FileText className="h-4 w-4" /> Ficha técnica
+          </a>
+        )}
+        {!specUrl(p) && GUIDES[p.category_slug] && (
+          <a href={GUIDES[p.category_slug]} target="_blank" rel="noreferrer" className="mt-auto flex items-center justify-center gap-1.5 w-full rounded-lg border border-primary text-primary text-sm font-semibold py-2 hover:bg-secondary transition">
+            <FileText className="h-4 w-4" /> Guía
           </a>
         )}
         <button onClick={() => { add(p.slug, p.name); toast.success("Agregado al carrito"); }}
