@@ -3,6 +3,16 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { categoriesQuery, productsQuery, settingsQuery } from "@/lib/store";
 import { StoreLayout } from "@/components/store/Layout";
 import { ProductGrid } from "@/components/store/ProductCard";
+import { FileText } from "lucide-react";
+import guiaMant from "@/assets/guias/mantenimiento-computadores.pdf.asset.json";
+import guiaVhs from "@/assets/guias/digitalizacion-vhs.pdf.asset.json";
+import guiaSonido from "@/assets/guias/sonido-profesional.pdf.asset.json";
+
+const GUIDES: Record<string, string> = {
+  "mantenimiento-computadores": guiaMant.url,
+  "digitalizacion-vhs": guiaVhs.url,
+  "sonido-profesional": guiaSonido.url,
+};
 
 export const Route = createFileRoute("/categoria/$slug")({
   head: ({ params }) => ({
@@ -31,7 +41,15 @@ function CategoryPage() {
   return (
     <StoreLayout>
       <div className="mx-auto max-w-7xl px-4 py-8 space-y-8">
-        <h1 className="text-3xl font-extrabold">{cat?.name ?? slug}</h1>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h1 className="text-3xl font-extrabold">{cat?.name ?? slug}</h1>
+          {GUIDES[slug] && (
+            <a href={GUIDES[slug]} target="_blank" rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg bg-primary text-primary-foreground px-5 py-2.5 font-semibold hover:bg-primary-deep">
+              <FileText className="h-5 w-5" /> Ver guía en PDF
+            </a>
+          )}
+        </div>
         {items.length ? [...groups].map(([g, list]) => (
           <section key={g}>
             <h2 className="text-xl font-bold mb-3">{g}</h2>
