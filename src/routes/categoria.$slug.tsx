@@ -4,15 +4,7 @@ import { categoriesQuery, productsQuery, settingsQuery } from "@/lib/store";
 import { StoreLayout } from "@/components/store/Layout";
 import { ProductGrid } from "@/components/store/ProductCard";
 import { FileText } from "lucide-react";
-import guiaMant from "@/assets/guias/mantenimiento-computadores.pdf.asset.json";
-import guiaVhs from "@/assets/guias/digitalizacion-vhs.pdf.asset.json";
-import guiaSonido from "@/assets/guias/sonido-profesional.pdf.asset.json";
-
-const GUIDES: Record<string, string> = {
-  "mantenimiento-computadores": guiaMant.url,
-  "digitalizacion-vhs": guiaVhs.url,
-  "sonido-profesional": guiaSonido.url,
-};
+import { GUIDES } from "@/lib/guides";
 
 export const Route = createFileRoute("/categoria/$slug")({
   head: ({ params }) => ({
