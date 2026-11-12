@@ -36,6 +36,13 @@
       "when": 1793808557921,
       "tag": "0004_product_spec_url",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1794483465368,
+      "tag": "0005_tighten_settings_and_images_read",
+      "breakpoints": true
     }
   ]
 }
